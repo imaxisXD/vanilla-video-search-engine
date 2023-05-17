@@ -5,11 +5,20 @@
 }
 
 body {
+    background-color: #FAFAFA;
+    font-family: 'Barlow', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    border: 1px solid rgb(0, 0, 0);
     height: 757px;
     width: 360px;
-    background-color: #FAFAFA;
-    border: 1px solid red;
-    font-family: 'Barlow', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .navbar {
@@ -42,11 +51,13 @@ body {
     height: 48px;
     border-radius: 6px;
     padding: 16px;
+    padding-bottom: 42px;
     font-family: 'Barlow';
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: 16px;
     letter-spacing: 0.0025em;
-
+    background-color: white;
+    border: 1px solid red;
 }
