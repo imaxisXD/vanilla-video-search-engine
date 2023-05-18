@@ -10,24 +10,26 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
 }
 
 .container {
-    border: 1px solid rgb(0, 0, 0);
-    height: 100vh;
     width: 360px;
+    height: 1000px;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #FAFAFA;
+    overflow-y: auto;
 }
 
 .navbar {
     display: flex;
     height: 60px;
     padding: 20px;
+    align-items: flex-start;
+    width: 100%;
 }
 
 .navbar__log {
@@ -35,7 +37,6 @@ body {
     width: 20px;
     order: 0;
     flex-grow: 0;
-
 }
 
 .navbar__title {
@@ -68,7 +69,6 @@ body {
 .resultContainer {
     width: 345px;
     max-height: 482px;
-    overflow-y: scroll;
     padding: 0;
     background-color: transparent;
 }
@@ -94,18 +94,17 @@ body {
 }
 
 .parent-container {
-    background-color: transparent !important;
+    background-color: #FAFAFA !important;
 }
 
 .result-card {
-
+    background-color: white !important;
     border-radius: 6px;
     height: 90px !important;
     width: 340px !important;
     display: flex !important;
     padding: 8px !important;
     margin-bottom: 8px !important;
-    margin-top: 8px !important;
     cursor: pointer;
 }
 
@@ -121,6 +120,11 @@ body {
     border-radius: 6px;
 }
 
+.thumnail>img {
+    border-radius: 6px;
+
+}
+
 .result-card__right-container {
     display: flex;
     flex-direction: column;
@@ -134,7 +138,6 @@ body {
 
 .result-card__title {
     width: 168px;
-    height: 32px;
     font-family: 'Barlow' !important;
     font-style: normal !important;
     font-weight: 600;
@@ -147,15 +150,13 @@ body {
 
 .result-card__subtitle {
     width: 168px;
-    height: 10px;
     font-family: 'Barlow';
     font-style: normal;
     font-weight: 500;
     font-size: 10px;
-    line-height: 10px;
     letter-spacing: 0.0025em;
     color: #9499A6;
-    margin-bottom: 12px;
+    margin-bottom: 9px;
 }
 
 .result-card__innercontainer {
@@ -164,19 +165,34 @@ body {
     align-items: flex-start;
     padding: 0px;
     width: 175px;
-    height: 10px;
     justify-content: space-between;
-    margin-bottom: 8px;
 }
 
 /* To remove default padding  */
 .gsc-control-cse {
     padding: 0 !important;
+    border: 0 !important;
+}
+
+.gsc-results-wrapper-visible {
+    padding: 0px !important;
 }
 
 .gsc-results {
     width: 100% !important;
     padding: 0 !important;
+    background-color: #FAFAFA !important;
+    border: none !important;
+}
+
+.gsc-result {
+    background-color: #ffffff !important;
+    border-radius: 6px;
+}
+
+.gsc-webResult {
+    border: none !important;
+    zoom: 0 !important;
 }
 
 .gsc-search-button .gsc-search-button-v2 {
@@ -184,8 +200,81 @@ body {
 }
 
 /* To center allign the cards */
-.gsc-tabData.gsc-tabdActive {
+.gsc-tabData .gsc-tabdActive {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+}
+
+/* search on google button */
+.gcsc-more-maybe-branding-root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    padding: 10px 16px;
+    background: #FFFFFF;
+    border-radius: 33px;
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.gsc-resultsbox-visible {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background-color: transparent !important;
+}
+
+.gsc-cursor {
+    display: flex !important;
+    align-items: flex-start !important;
+    padding: 16px 28px;
+    width: 342px;
+    background: #ffffff;
+    border-radius: 6px;
+    justify-content: space-between;
+}
+
+.gsc-cursor-page {
+    display: none !important;
+}
+
+.gsc-results .gsc-cursor-box .gsc-cursor-page {
+    margin: 0px !important;
+}
+
+.navBtn {
+    margin-left: 6px !important;
+    margin-right: 6px !important;
+    display: block !important;
+    font-family: 'Barlow' !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    color: #2B2F39;
+    text-decoration: none !important;
+}
+
+.curr-navBtn {
+    display: block !important;
+    font-family: 'Barlow' !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    color: #5D6067 !important;
+    text-decoration: none !important;
+}
+
+.arrowcontainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    width: 48px;
+    height: 17px;
 }
