@@ -61,16 +61,19 @@ body {
     letter-spacing: 0.0025em;
     background-color: white;
     border: 1px solid red;
+    margin-bottom: 16px;
 }
 
 .resultContainer {
     width: 340;
 }
 
+/* To hind the numbers of result from top */
 .gsc-result-info {
     display: none;
 }
 
+/* To remove the upper padding and border of search result */
 .gsc-above-wrapper-area {
     padding: 0 !important;
     border: none !important;
@@ -80,11 +83,54 @@ body {
     background-color: #DDDDDD !important;
 }
 
-.result-container {
+.result-card {
     background-color: rgb(195, 169, 169) !important;
-    border: 1px solid red;
+    border-radius: 6px;
+    height: 90px !important;
+    width: 340px !important;
+    display: flex !important;
+    padding: 8px !important;
+    margin-bottom: 8px !important;
+    margin-top: 8px !important;
 }
 
+.thumnail {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 0px;
+    width: 132px;
+    height: 74px;
+    background: #1458D6;
+    border-radius: 6px;
+
+}
+
+.result-card__right-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    width: 175px;
+    height: 74px;
+    border: 2px solid red;
+    margin-left: 16px;
+}
+
+/* To remove default padding  */
 .gsc-control-cse {
     padding: 0 !important;
+}
+
+.gsc-results {
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+/* To center allign the cards */
+.gsc-tabData.gsc-tabdActive {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
