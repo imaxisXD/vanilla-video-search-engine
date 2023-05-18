@@ -1,39 +1,49 @@
 const myWebSearchStartingCallback = (gname, query) => {
-    return query + ' music';// Query to search only music video
+    return query + ' music' + ' song';// Query to search only music video
     // Additionaly we can use ` query+' site:youtube.com/watch' `
 };
 window.myImageSearchStartingCallbackName = myWebSearchStartingCallback;
 
 const makeTwoPartCallback = () => {
     let musicCategoryVideoes = [];
+
     const readyCallback = (name, q, promos, results, resultsDiv) => {
         for (const result of results) {
             if (result?.richSnippet?.videoobject.genre === 'Music') {
                 musicCategoryVideoes.push({
-                    title: result.titleNoFormatting,
-                    channel: result.person.name,
-                    thumnailImage: result.thumbnailImage.url,
-                    url: result.videoobject.url,
-                    views: result.videoobject.interactioncount
+                    genre: 'Music',
+                    title: result?.titleNoFormatting,
+                    channel: result?.richSnippet?.person.name,
+                    thumbnailImage: result?.thumbnailImage?.url,
+                    url: result?.richSnippet?.videoobject?.url,
+                    views: result?.richSnippet?.videoobject?.interactioncount
                 })
             }
+            else {
+                musicCategoryVideoes.push({ genre: 'NotMusic' })
+            }
         }
-        console.log(musicCategoryVideoes)
-        results = musicCategoryVideoes;
-        console.log(results)
+        console.log(resultsDiv)
 
     };
+
     const renderedCallback = (name, q, promos, results) => {
         console.log(results)
-
-        for (let i = 0; i < musicCategoryVideoes.length; i++) {
+        for (let i = 0; i < results.length; i++) {
             const div = results[i];
-            // console.log(div)
-            const viewCount = musicCategoryVideoes[i].richSnippet.videoobject.interactioncount;
-            if (viewCount) {
+            const parent = div.parentNode;
+            parent.classList.add('parent-container');
+
+            const genre = musicCategoryVideoes[i]["genre"];
+            if (genre === "Music") {
+                div.classList.add('result-container')
                 const innerDiv = document.createElement('div');
-                innerDiv.innerHTML = '<b>Views: ' + formatNumber(viewCount) + '</b>';
+                innerDiv.innerHTML = '<b>Views: ' + formatNumber(genre) + '</b>';
                 div.insertAdjacentElement('afterbegin', innerDiv);
+            }
+            else {
+                console.log(parent);
+                parent.removeChild(div);
             }
         }
 
