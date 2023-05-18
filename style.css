@@ -5,21 +5,23 @@
 }
 
 body {
-    background-color: #FAFAFA;
+    background-color: black;
     font-family: 'Barlow', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100%;
+    width: 100%;
 }
 
 .container {
     border: 1px solid rgb(0, 0, 0);
-    height: 757px;
+    height: 100vh;
     width: 360px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #FAFAFA;
 }
 
 .navbar {
@@ -60,12 +62,20 @@ body {
     line-height: 16px;
     letter-spacing: 0.0025em;
     background-color: white;
-    border: 1px solid red;
     margin-bottom: 16px;
 }
 
 .resultContainer {
-    width: 340;
+    width: 345px;
+    max-height: 482px;
+    overflow-y: scroll;
+    padding: 0;
+    background-color: transparent;
+}
+
+.resultContainer::-webkit-scrollbar {
+    width: 0.1em;
+
 }
 
 /* To hind the numbers of result from top */
@@ -79,12 +89,16 @@ body {
     border: none !important;
 }
 
+.gsc-control-cse {
+    font-family: 'Barlow' !important;
+}
+
 .parent-container {
-    background-color: #DDDDDD !important;
+    background-color: transparent !important;
 }
 
 .result-card {
-    background-color: rgb(195, 169, 169) !important;
+
     border-radius: 6px;
     height: 90px !important;
     width: 340px !important;
@@ -92,6 +106,7 @@ body {
     padding: 8px !important;
     margin-bottom: 8px !important;
     margin-top: 8px !important;
+    cursor: pointer;
 }
 
 .thumnail {
@@ -104,7 +119,6 @@ body {
     height: 74px;
     background: #1458D6;
     border-radius: 6px;
-
 }
 
 .result-card__right-container {
@@ -114,8 +128,45 @@ body {
     padding: 0px;
     width: 175px;
     height: 74px;
-    border: 2px solid red;
     margin-left: 16px;
+    font-family: 'Barlow', sans-serif;
+}
+
+.result-card__title {
+    width: 168px;
+    height: 32px;
+    font-family: 'Barlow' !important;
+    font-style: normal !important;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.0025em;
+    color: #2B2F39;
+    margin-bottom: 8px;
+}
+
+.result-card__subtitle {
+    width: 168px;
+    height: 10px;
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 10px;
+    letter-spacing: 0.0025em;
+    color: #9499A6;
+    margin-bottom: 12px;
+}
+
+.result-card__innercontainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    width: 175px;
+    height: 10px;
+    justify-content: space-between;
+    margin-bottom: 8px;
 }
 
 /* To remove default padding  */
@@ -126,6 +177,10 @@ body {
 .gsc-results {
     width: 100% !important;
     padding: 0 !important;
+}
+
+.gsc-search-button .gsc-search-button-v2 {
+    cursor: pointer;
 }
 
 /* To center allign the cards */

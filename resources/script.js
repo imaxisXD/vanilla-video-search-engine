@@ -8,6 +8,7 @@ const makeTwoPartCallback = () => {
     let musicCategoryVideoes = [];
 
     const readyCallback = (name, q, promos, results, resultsDiv) => {
+        musicCategoryVideoes = []
         for (const result of results) {
             if (result?.richSnippet?.videoobject.genre === 'Music') {
                 musicCategoryVideoes.push({
@@ -22,13 +23,11 @@ const makeTwoPartCallback = () => {
             else {
                 musicCategoryVideoes.push({ genre: 'NotMusic' })
             }
-        }
-        console.log(resultsDiv)
 
+        }
     };
 
     const renderedCallback = (name, q, promos, results) => {
-        console.log(results)
         for (let i = 0; i < results.length; i++) {
             const div = results[i];
             const parent = div.parentNode;
@@ -52,24 +51,27 @@ const makeTwoPartCallback = () => {
                 const infoDiv = document.createElement('div');
                 infoDiv.classList.add('result-card__right-container');
                 const urlAndViewDiv = document.createElement('div');
-
+                urlAndViewDiv.classList.add('result-card__innercontainer');
                 const childElementArray2 = [
                     document.createElement('span'),
                     document.createElement('span')
                 ];
                 childElementArray2[0].textContent = 'Youtube.com';
-                childElementArray2[1].textContent = musicCategoryVideoes[i].views;
+                childElementArray2[1].textContent = formatNumber(musicCategoryVideoes[i].views) + ' views';
                 for (const child of childElementArray2) {
                     urlAndViewDiv.appendChild(child)
                 }
+
                 const childElementArray1 = [
                     document.createElement('p'),
                     document.createElement('p'),
                     urlAndViewDiv
                 ];
 
-                childElementArray1[0].textContent = musicCategoryVideoes[i].title;
+                childElementArray1[0].textContent = stringLengthShortner(musicCategoryVideoes[i].title, 40);
+                childElementArray1[0].classList.add('result-card__title');
                 childElementArray1[1].textContent = musicCategoryVideoes[i].channel;
+                childElementArray1[1].classList.add('result-card__subtitle');
 
                 for (const child of childElementArray1) {
                     infoDiv.appendChild(child);
@@ -78,7 +80,6 @@ const makeTwoPartCallback = () => {
                 div.appendChild(infoDiv);
             }
             else {
-                console.log(parent);
                 parent.removeChild(div);
             }
         }
@@ -94,14 +95,7 @@ const {
 
 
 
-function formatNumber(number) { // To convert them to K and M ie 1K or 1M
-    if (number >= 1000000) {
-        return (number / 1000000).toFixed(1) + "M";
-    } else if (number >= 1000) {
-        return (number / 1000).toFixed(1) + "K";
-    }
-    return number.toString();
-}
+
 
 
 window.__gcse || (window.__gcse = {});
@@ -112,3 +106,20 @@ window.__gcse.searchCallbacks = {
         rendered: webResultsRenderedCallback,
     },
 };
+
+// Helper Function Section
+function stringLengthShortner(sentance, maxLength = 20) { // To convert long title to title...
+    if (sentance.length > maxLength) {
+        sentance = sentance.substring(0, maxLength) + '...';
+    }
+    return sentance;
+}
+
+function formatNumber(number) { // To convert them to K and M ie 1K or 1M
+    if (number >= 1000000) {
+        return (number / 1000000).toFixed(1) + "M";
+    } else if (number >= 1000) {
+        return (number / 1000).toFixed(1) + "K";
+    }
+    return number.toString();
+}
