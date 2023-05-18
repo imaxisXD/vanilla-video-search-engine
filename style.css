@@ -273,8 +273,11 @@ body {
 .arrowcontainer {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     padding: 0px;
     width: 48px;
     height: 17px;
+
 }
