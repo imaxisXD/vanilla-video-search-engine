@@ -54,11 +54,21 @@ const makeTwoPartCallback = () => {
                     document.createElement('span'),
                     document.createElement('span')
                 ];
+                const flexContainer = document.createElement('div');
+                const ytlogo = document.createElement('img')
+                ytlogo.src = './resources/Images/yt.svg';
+                ytlogo.width = '10';
+                ytlogo.height = '10';
                 childElementArray2[0].textContent = 'Youtube.com';
-                childElementArray2[1].textContent = formatNumber(musicCategoryVideoes[i].views) + ' views';
-                for (const child of childElementArray2) {
-                    urlAndViewDiv.appendChild(child)
-                }
+                flexContainer.appendChild(ytlogo);
+                flexContainer.appendChild(childElementArray2[0]);
+                flexContainer.classList.add('flex')
+                childElementArray2[1].textContent = formatNumber
+                    (musicCategoryVideoes[i].views) + ' views';
+
+                urlAndViewDiv.appendChild(flexContainer)
+                urlAndViewDiv.appendChild(childElementArray2[1])
+
                 const childElementArray1 = [
                     document.createElement('p'),
                     document.createElement('p'),
