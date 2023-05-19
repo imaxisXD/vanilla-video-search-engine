@@ -285,7 +285,8 @@ body {
     position: fixed;
     width: 367px;
     height: 100%;
-    display: flex;
+    display: none;
+    transition: all 0.3s linear;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -293,12 +294,122 @@ body {
     z-index: 9999;
 }
 
-#modalcontent {
+.modal__img-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid red;
     z-index: 9999;
+    position: relative;
+    cursor: pointer;
 
+}
+
+.ytlogo {
+    top: 50;
+    left: 50;
+    position: absolute;
+}
+
+.modal-title {
+    margin-left: 24px;
+    margin-right: 24px;
+    margin-bottom: 8px;
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: #FFFFFF;
+    width: 312px;
+    cursor: pointer;
+
+}
+
+.modal-info-container {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.modal-subinfo {
+    margin-left: 24px;
+    margin-right: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 11px;
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    width: 206px;
+    color: #9499A6;
+    cursor: pointer;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#channelName {
+    margin-left: 4px;
+}
+
+#modalButton {
+    position: absolute;
+    bottom: 0;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    gap: 10px;
+    width: 360px;
+    height: 66px;
+}
+
+.primary-btn {
+    padding: 12px 26px;
+    width: 80px;
+    height: 34px;
+    background: #2A8CFF;
+    border-radius: 20px;
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+}
+
+.secondary-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 26px;
+    width: 87px;
+    height: 34px;
+    background: #5D6067;
+    border-radius: 20px;
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+}
+
+.show {
+    display: flex !important;
 }

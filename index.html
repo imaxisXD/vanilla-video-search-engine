@@ -44,30 +44,41 @@
             src="https://i.ytimg.com/vi/DASUQ1Xo744/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBszGDboAv5n-fsUJq1neYMtycLfQ
         "
             height="260"
-            width="360"
+            width="367"
+            class="videoImg"
           />
           <img
             src="./resources/Images/yt.svg"
             alt="play"
-            height="71.75"
-            width="51.25"
+            height="82"
+            width="82"
+            class="ytlogo"
           />
         </div>
-        <div>
-          <p>
+        <div class="modal-info-container">
+          <p class="modal-title" id="title">
             K-pop group BLACKPINK to release Ready For Love on July 29. Details
             inside. - India Today
           </p>
-          <span>🏳️‍🌈 Koreaboo.com</span>
-          <span> • </span>
-          <span>65m views</span>
+          <div class="modal-subinfo">
+            <div class="flex">
+              <img
+                src="./resources/Images/yt.svg"
+                alt="youtube"
+                width="14"
+                height="13"
+              />
+              <span id="channelName"> Koreaboo.com</span>
+            </div>
+
+            <span> • </span>
+            <span id="viewCount">65m views</span>
+          </div>
         </div>
       </div>
       <div id="modalButton">
-        <div class="btn-container">
-          <button class="primary-btn">Vist</button>
-          <button class="secondary-btn">Close</button>
-        </div>
+        <a class="primary-btn" id="visit">Vist</a>
+        <a class="secondary-btn" id="close">Close</a>
       </div>
     </div>
   </body>

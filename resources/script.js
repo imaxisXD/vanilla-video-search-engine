@@ -1,3 +1,4 @@
+
 const myWebSearchStartingCallback = (gname, query) => {
     return query + ' music' + ' song';// Query to search only music video
     // Additionaly we can use ` query+' site:youtube.com/watch' `
@@ -18,7 +19,7 @@ const makeTwoPartCallback = () => {
                     thumbnailImage: result?.thumbnailImage?.url,
                     url: result?.richSnippet?.videoobject?.url,
                     views: result?.richSnippet?.videoobject?.interactioncount,
-                    imageUrl: result?.metatags?.ogImage
+                    imageUrl: result?.richSnippet?.imageobject?.url
                 })
             }
             else {
@@ -95,13 +96,6 @@ const {
     readyCallback: webResultsReadyCallback,
     renderedCallback: webResultsRenderedCallback,
 } = makeTwoPartCallback();
-
-
-
-
-
-
-
 window.__gcse || (window.__gcse = {});
 window.__gcse.searchCallbacks = {
     web: {
@@ -182,6 +176,29 @@ function searchOnGoogleBtn() {
 }
 
 //Event Handlers
-openFullPage(data) {
+function openFullPage(data) {
+    const modal = document.getElementById('modalContainer');
 
-}
+    const thumbnailImage = document.getElementById('modalimage');
+    const visitBtn = document.getElementById('visit');
+    const closeBtn = document.getElementById('close');
+    const viewCount = document.getElementById('viewCount');
+    const title = document.getElementById('title');
+    const channel = document.getElementById('channelName');
+
+    title.textContent = stringLengthShortner(data.title, 200);
+    thumbnailImage.src = data.imageUrl;
+    viewCount.textContent = `${formatNumber(data.views)} views`
+    channel.textContent = data.channel;
+    const elementsWhichRedirects = [title, channel, thumbnailImage, visitBtn];
+    elementsWhichRedirects.forEach(element => {
+        element.addEventListener('click', () => {
+            window.location.href = data.url;
+        });
+    });
+    closeBtn.addEventListener('click', () => {
+        modal.classList.remove("show");
+    })
+    modal.classList.add('show');
+
+};
