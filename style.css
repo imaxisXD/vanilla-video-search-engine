@@ -235,9 +235,10 @@ body {
     align-items: flex-start !important;
     padding: 16px 28px;
     width: 342px;
+    gap: 6rem;
     background: #ffffff;
     border-radius: 6px;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .gsc-cursor-page {

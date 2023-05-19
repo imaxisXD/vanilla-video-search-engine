@@ -32,16 +32,12 @@ const makeTwoPartCallback = () => {
     const renderedCallback = (name, q, promos, results) => {
         for (let i = 0; i < results.length; i++) {
             const div = results[i];
-
             const parent = div.parentNode;
             parent.classList.add('parent-container');
             const genre = musicCategoryVideoes[i]["genre"];
-
             if (genre === "Music") {
-
                 div.innerHTML = '';
                 div.classList.add('result-card');
-
                 const imageDiv = document.createElement('div');
                 const imageElement = document.createElement('img');
                 imageElement.src = musicCategoryVideoes[i]["thumbnailImage"];
@@ -50,7 +46,6 @@ const makeTwoPartCallback = () => {
                 imageDiv.classList.add('thumnail')
                 imageDiv.appendChild(imageElement);
                 div.appendChild(imageDiv);
-
                 const infoDiv = document.createElement('div');
                 infoDiv.classList.add('result-card__right-container');
                 const urlAndViewDiv = document.createElement('div');
@@ -76,8 +71,6 @@ const makeTwoPartCallback = () => {
                 for (const child of childElementArray1) {
                     infoDiv.appendChild(child);
                 }
-                div.setAttribute('data-url', musicCategoryVideoes[i].url);
-                div.setAttribute('data-img', musicCategoryVideoes[i].imageUrl);
                 div.appendChild(infoDiv);
                 div.addEventListener('click', () => {
                     openFullPage(musicCategoryVideoes[i])
@@ -130,32 +123,37 @@ function navBar() {
     const pageArray = Array.from(pageNumberComponent);
     const currentPageIndex = Array.from(pageArray).findIndex(div => div.classList.contains('gsc-cursor-current-page'));
 
-    const previousDiv = pageArray[currentPageIndex - 1];
-    const currentDiv = pageArray[currentPageIndex];
-    const nextDiv = pageArray[currentPageIndex + 1];
 
-    previousDiv.classList.add('navBtn')
-    nextDiv.classList.add('navBtn')
-    currentDiv.classList.add('curr-navBtn')
 
     // Custom Navigation Bar
     if (navigationElement[0]) {
         //Left Arrow            
-        const leftArrowDiv = document.createElement('div');
-        const leftArrowImage = document.createElement('img');
-        previousDiv.innerText = 'Prev'
-        leftArrowImage.src = './resources/Images/leftArrow.svg';
-        leftArrowImage.width = '16';
-        leftArrowImage.height = '16';
-        leftArrowDiv.classList.add('arrowcontainer');
-        leftArrowDiv.appendChild(leftArrowImage);
-        leftArrowDiv.appendChild(previousDiv)
-        navigationElement[0].prepend(leftArrowDiv);
+
+        if (currentPageIndex > 0) {
+            const currentDiv = pageArray[currentPageIndex];
+            currentDiv.classList.add('curr-navBtn');
+            const previousDiv = pageArray[currentPageIndex - 1];
+            previousDiv.classList.add('navBtn');
+            previousDiv.textContent = 'Prev';
+            const leftArrowDiv = document.createElement('div');
+            const leftArrowImage = document.createElement('img');
+            leftArrowImage.src = './resources/Images/leftArrow.svg';
+            leftArrowImage.width = '16';
+            leftArrowImage.height = '16';
+            leftArrowDiv.classList.add('arrowcontainer');
+            leftArrowDiv.appendChild(leftArrowImage);
+            leftArrowDiv.appendChild(previousDiv);
+            navigationElement[0].prepend(leftArrowDiv);
+
+        }
+
 
         // Right Arrow
+        const nextDiv = pageArray[currentPageIndex + 1];
+        nextDiv.classList.add('navBtn');
+        nextDiv.textContent = 'Next';
         const rightArrowDiv = document.createElement('div');
         const rightArrowImg = document.createElement('img');
-        nextDiv.textContent = 'Next';
         rightArrowImg.src = './resources/Images/rightArrow.svg';
         rightArrowImg.width = '16';
         rightArrowImg.height = '16';
