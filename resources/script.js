@@ -7,7 +7,6 @@ window.myImageSearchStartingCallbackName = myWebSearchStartingCallback;
 
 const makeTwoPartCallback = () => {
     let musicCategoryVideoes = [];
-
     const readyCallback = (name, q, promos, results, resultsDiv) => {
         musicCategoryVideoes = []
         for (const result of results) {
@@ -30,69 +29,82 @@ const makeTwoPartCallback = () => {
     };
 
     const renderedCallback = (name, q, promos, results) => {
+        const sortedVideos = musicCategoryVideoes.filter(video => video.genre === "Music")
+            .sort((a, b) => b.views - a.views);
+
         for (let i = 0; i < results.length; i++) {
             const div = results[i];
             const parent = div.parentNode;
             parent.classList.add('parent-container');
-            const genre = musicCategoryVideoes[i]["genre"];
-            if (genre === "Music") {
+
+            if (i < sortedVideos.length) {
+                const video = sortedVideos[i];
                 div.innerHTML = '';
                 div.classList.add('result-card');
                 const imageDiv = document.createElement('div');
                 const imageElement = document.createElement('img');
-                imageElement.src = musicCategoryVideoes[i]["thumbnailImage"];
+                imageElement.src = video.thumbnailImage;
                 imageElement.width = '132';
                 imageElement.height = '74';
-                imageDiv.classList.add('thumnail')
+                imageDiv.classList.add('thumbnail');
                 imageDiv.appendChild(imageElement);
                 div.appendChild(imageDiv);
+
                 const infoDiv = document.createElement('div');
                 infoDiv.classList.add('result-card__right-container');
+
                 const urlAndViewDiv = document.createElement('div');
                 urlAndViewDiv.classList.add('result-card__innercontainer');
+
                 const childElementArray2 = [
                     document.createElement('span'),
                     document.createElement('span')
                 ];
+
                 const flexContainer = document.createElement('div');
-                const ytlogo = document.createElement('img')
+                const ytlogo = document.createElement('img');
                 ytlogo.src = './resources/Images/yt.svg';
                 ytlogo.width = '10';
                 ytlogo.height = '10';
                 childElementArray2[0].textContent = 'Youtube.com';
                 flexContainer.appendChild(ytlogo);
                 flexContainer.appendChild(childElementArray2[0]);
-                flexContainer.classList.add('flex')
-                childElementArray2[1].textContent = formatNumber
-                    (musicCategoryVideoes[i].views) + ' views';
+                flexContainer.classList.add('flex');
+                childElementArray2[1].textContent = formatNumber(video.views) + ' views';
 
-                urlAndViewDiv.appendChild(flexContainer)
-                urlAndViewDiv.appendChild(childElementArray2[1])
+                urlAndViewDiv.appendChild(flexContainer);
+                urlAndViewDiv.appendChild(childElementArray2[1]);
 
                 const childElementArray1 = [
                     document.createElement('p'),
                     document.createElement('p'),
                     urlAndViewDiv
                 ];
-                childElementArray1[0].textContent = stringLengthShortner(musicCategoryVideoes[i].title, 40);
+
+                childElementArray1[0].textContent = stringLengthShortner(video.title, 40);
                 childElementArray1[0].classList.add('result-card__title');
-                childElementArray1[1].textContent = musicCategoryVideoes[i].channel;
+                childElementArray1[1].textContent = video.channel;
                 childElementArray1[1].classList.add('result-card__subtitle');
+
                 for (const child of childElementArray1) {
                     infoDiv.appendChild(child);
                 }
+
                 div.appendChild(infoDiv);
+
                 div.addEventListener('click', () => {
-                    openFullPage(musicCategoryVideoes[i])
+                    openFullPage(video);
                 });
-            }
-            else {
+            } else {
                 parent.removeChild(div);
             }
         }
+
         navBar();
         searchOnGoogleBtn();
     };
+
+
     return { readyCallback, renderedCallback };
 };
 const {
@@ -132,13 +144,7 @@ function navBar() {
     pageNumberComponent = document.getElementsByClassName('gsc-cursor-page');
     const pageArray = Array.from(pageNumberComponent);
     const currentPageIndex = Array.from(pageArray).findIndex(div => div.classList.contains('gsc-cursor-current-page'));
-
-
-
-    // Custom Navigation Bar
     if (navigationElement[0]) {
-        //Left Arrow            
-
         if (currentPageIndex > 0) {
             const currentDiv = pageArray[currentPageIndex];
             currentDiv.classList.add('curr-navBtn');
@@ -154,11 +160,7 @@ function navBar() {
             leftArrowDiv.appendChild(leftArrowImage);
             leftArrowDiv.appendChild(previousDiv);
             navigationElement[0].prepend(leftArrowDiv);
-
         }
-
-
-        // Right Arrow
         const nextDiv = pageArray[currentPageIndex + 1];
         nextDiv.classList.add('navBtn');
         nextDiv.textContent = 'Next';
@@ -186,14 +188,12 @@ function searchOnGoogleBtn() {
 //Event Handlers
 function openFullPage(data) {
     const modal = document.getElementById('modalContainer');
-
     const thumbnailImage = document.getElementById('modalimage');
     const visitBtn = document.getElementById('visit');
     const closeBtn = document.getElementById('close');
     const viewCount = document.getElementById('viewCount');
     const title = document.getElementById('title');
     const channel = document.getElementById('channelName');
-
     title.textContent = stringLengthShortner(data.title, 200);
     thumbnailImage.src = data.imageUrl;
     viewCount.textContent = `${formatNumber(data.views)} views`
