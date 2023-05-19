@@ -31,12 +31,13 @@ const makeTwoPartCallback = () => {
     const renderedCallback = (name, q, promos, results) => {
         for (let i = 0; i < results.length; i++) {
             const div = results[i];
-            div.addEventListener('click', handleClick);
+
             const parent = div.parentNode;
             parent.classList.add('parent-container');
             const genre = musicCategoryVideoes[i]["genre"];
 
             if (genre === "Music") {
+
                 div.innerHTML = '';
                 div.classList.add('result-card');
 
@@ -77,6 +78,9 @@ const makeTwoPartCallback = () => {
                 div.setAttribute('data-url', musicCategoryVideoes[i].url);
                 div.setAttribute('data-img', musicCategoryVideoes[i].imageUrl);
                 div.appendChild(infoDiv);
+                div.addEventListener('click', () => {
+                    openFullPage(musicCategoryVideoes[i])
+                });
             }
             else {
                 parent.removeChild(div);
@@ -178,10 +182,6 @@ function searchOnGoogleBtn() {
 }
 
 //Event Handlers
-const handleClick = (event) => {
-    // Access event properties and perform actions
-    console.log(event);
-    console.log('Event target:', event.target);
+openFullPage(data) {
 
-    // ...other event-related operations
-};
+}

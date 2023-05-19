@@ -279,5 +279,26 @@ body {
     padding: 0px;
     width: 48px;
     height: 17px;
+}
+
+#modalContainer {
+    position: fixed;
+    width: 367px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #202124;
+    z-index: 9999;
+}
+
+#modalcontent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid red;
+    z-index: 9999;
 
 }
